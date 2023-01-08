@@ -1,4 +1,4 @@
-
+import random
 from typing import Callable,Dict,Union
 import zmq
 from zmq import Socket
@@ -61,7 +61,7 @@ class VegetableTimerServer:
             except KeyError as err:
                 print(f"[WARN] Received unknown command message {msg}")
 
-    def shutdown(self) -> RequestMessages:
+    def shutdown(self) -> ResponseMessages:
         self.shutdown_requested = True
         return ResponseMessages.SUCCESS
 
@@ -82,6 +82,8 @@ class VegetableTimerServer:
 
 
     def start_timer(self):
+        if self.start_time > 0: # already running
+            return ResponseMessages.ERROR
         self.start_time = int(time.time())
         return ResponseMessages.SUCCESS
 
@@ -96,34 +98,45 @@ class VegetableTimerServer:
         server.socket.close()
 
     @staticmethod
-    def _format_to_waybar(timer_secs:int,max_timer_secs:int,title:str="") -> str:
+    def _format_to_waybar(timer_secs:int,max_timer_secs:int,title:str="") -> dict[str, str]:
         passed_str = f"{timer_secs // 60}min {timer_secs%60}s"
         total_str = f"{max_timer_secs // 60}min {max_timer_secs%60}s"
-        return {"text" : f"{title}{passed_str}/{total_str}".center(WIDTH),"class":f"{min(int(timer_secs/max_timer_secs*100),99)}"}
+        return {"text" : f"{title}{passed_str}/{total_str}".center(WIDTH),
+                "class":f"{min(int(timer_secs/max_timer_secs*100),99)}"}
     
+    @staticmethod
+    def _is_server_up() -> bool:
+        with context.socket(zmq.REQ) as socket:
+            socket.connect(SOCKET_ADDRESS)
+            socket.send_string(RequestMessages.PRESENCE_CHECK)
+            poller = zmq.Poller()
+            poller.register(socket, zmq.POLLIN)
+            wait_noise = int(random.random() * 2000) # fighting race cons one shitty non-deterministic hack at a time
+            poll_result = poller.poll(500+wait_noise)
+            is_up = len(poll_result) > 0 # if we heard something then the server is up
+            if is_up:
+                _ = socket.recv_string()
+            return is_up
 
+    @staticmethod
+    def bring_up_if_down(max_retries = 3):
+            pass
 
 if __name__ =="__main__":
     parser = ArgumentParser()
     parser.add_argument("--request",choices=[m.value for m in RequestMessages],help="Choose appropriate number:" +','.join([f"{m.name}: {m.value}" for m in RequestMessages]),required=True)
     args = parser.parse_args()
-
+    server_thread = None
     # check if we're the first ones and need to start the whole damn thing!
+    if not VegetableTimerServer._is_server_up():
+        server_thread = Thread(None, VegetableTimerServer.start_new_server, args=[])
+        print("[INFO] Starting new server...")
+        server_thread.run()
+
     with context.socket(zmq.REQ) as socket:
         socket.connect(SOCKET_ADDRESS)
-        socket.send_string(RequestMessages.PRESENCE_CHECK)
-        poller = zmq.Poller()
-        poller.register(socket, zmq.POLLIN)
-        poll_result = poller.poll(500)
-        if len(poll_result) == 0:
-            print("[INFO] Starting new server...")
-            server_thread = Thread(None,VegetableTimerServer.start_new_server,args=[])
-            server_thread.run()
-        else:
-            response = socket.recv_string()
-            server_thread = None
         socket.send_string(args.request)
         print(socket.recv_string())
 
-    if server_thread is not None:
+    if server_thread is not None and server_thread.is_alive():
         server_thread.join()
