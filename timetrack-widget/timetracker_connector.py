@@ -25,6 +25,9 @@ class TimetrackConnector(abc.ABC):
     def get_current_task(self) -> TrackedTask:
         raise NotImplementedError
 
+    def create_task(self) -> TrackedTask:
+        raise NotImplementedError
+
     def stop_task(self, task_id : str):
         raise NotImplementedError
 
