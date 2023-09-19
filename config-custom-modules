@@ -1,10 +1,16 @@
 {
     "custom/vegetable": {
-                 "exec": "python /home/theo/code/rumgehacke/awful_waybar_extensions/vegetable-timer/timer_server.py --request 2",
-                 "on-click": "python /home/theo/code/rumgehacke/awful_waybar_extensions/vegetable-timer/timer_server.py --request 3",
-                 "on-click-right" : "python /home/theo/code/rumgehacke/awful_waybar_extensions/vegetable-timer/timer_server.py --request 4",
+                 "exec": "python3 /home/theo/code/rumgehacke/awful_waybar_extensions/vegetable-timer/timer_server.py --request 2",
+                 "on-click": "python3 /home/theo/code/rumgehacke/awful_waybar_extensions/vegetable-timer/timer_server.py --request 3",
+                 "on-click-right" : "python3 /home/theo/code/rumgehacke/awful_waybar_extensions/vegetable-timer/timer_server.py --request 4",
                  "return-type": "json",
                  "max-length": 35,
                  "interval" : 1
+                },
+    "custom/timeular" : {
+                    "exec" : "python3 /home/theo/code/rumgehacke/awful_waybar_extensions/timeular-widget/get_timeular_status.py  --api_key MTQ5ODU5XzU5ODVhYjQ4NTA0YjQwMGU5MTYxZTZhYTZiZTQxNDg0 --api_secret NjM4ZmE4MTQ2NDVjNDY2MWJhMmQzNTM4NTM0MTY2NDc",
+                    "interval" : 5,
+                    "max-length" : 40,
+                    "return-type" : "json"
                 }
 }
