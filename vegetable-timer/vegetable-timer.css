@@ -1,0 +1,818 @@
+/* 
+Put this with your waybar style.css.
+Either copy it there and do a @import url("vegetable-timer.css");
+or just append it to the style.css
+classes for vegetable timer 
+*/
+
+/* classes for vegetable-timer module */
+#custom-vegetable.alert {
+    background: #f53c3c;
+}
+
+#custom-vegetable.done {
+    background: #2E8B57;
+}
+
+/* SHITTY HACK for progress bar goes here */
+
+#custom-vegetable.percentage_0 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 0%,
+		rgba( 42,161,152, 0.2) 0.1%
+	);
+}
+
+#custom-vegetable.percentage_1 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 1%,
+		rgba( 42,161,152, 0.2) 1.1%
+	);
+}
+
+#custom-vegetable.percentage_2 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 2%,
+		rgba( 42,161,152, 0.2) 2.1%
+	);
+}
+
+#custom-vegetable.percentage_3 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 3%,
+		rgba( 42,161,152, 0.2) 3.1%
+	);
+}
+
+#custom-vegetable.percentage_4 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 4%,
+		rgba( 42,161,152, 0.2) 4.1%
+	);
+}
+
+#custom-vegetable.percentage_5 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 5%,
+		rgba( 42,161,152, 0.2) 5.1%
+	);
+}
+
+#custom-vegetable.percentage_6 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 6%,
+		rgba( 42,161,152, 0.2) 6.1%
+	);
+}
+
+#custom-vegetable.percentage_7 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 7%,
+		rgba( 42,161,152, 0.2) 7.1%
+	);
+}
+
+#custom-vegetable.percentage_8 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 8%,
+		rgba( 42,161,152, 0.2) 8.1%
+	);
+}
+
+#custom-vegetable.percentage_9 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 9%,
+		rgba( 42,161,152, 0.2) 9.1%
+	);
+}
+
+#custom-vegetable.percentage_10 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 10%,
+		rgba( 42,161,152, 0.2) 10.1%
+	);
+}
+
+#custom-vegetable.percentage_11 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 11%,
+		rgba( 42,161,152, 0.2) 11.1%
+	);
+}
+
+#custom-vegetable.percentage_12 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 12%,
+		rgba( 42,161,152, 0.2) 12.1%
+	);
+}
+
+#custom-vegetable.percentage_13 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 13%,
+		rgba( 42,161,152, 0.2) 13.1%
+	);
+}
+
+#custom-vegetable.percentage_14 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 14%,
+		rgba( 42,161,152, 0.2) 14.1%
+	);
+}
+
+#custom-vegetable.percentage_15 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 15%,
+		rgba( 42,161,152, 0.2) 15.1%
+	);
+}
+
+#custom-vegetable.percentage_16 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 16%,
+		rgba( 42,161,152, 0.2) 16.1%
+	);
+}
+
+#custom-vegetable.percentage_17 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 17%,
+		rgba( 42,161,152, 0.2) 17.1%
+	);
+}
+
+#custom-vegetable.percentage_18 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 18%,
+		rgba( 42,161,152, 0.2) 18.1%
+	);
+}
+
+#custom-vegetable.percentage_19 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 19%,
+		rgba( 42,161,152, 0.2) 19.1%
+	);
+}
+
+#custom-vegetable.percentage_20 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 20%,
+		rgba( 42,161,152, 0.2) 20.1%
+	);
+}
+
+#custom-vegetable.percentage_21 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 21%,
+		rgba( 42,161,152, 0.2) 21.1%
+	);
+}
+
+#custom-vegetable.percentage_22 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 22%,
+		rgba( 42,161,152, 0.2) 22.1%
+	);
+}
+
+#custom-vegetable.percentage_23 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 23%,
+		rgba( 42,161,152, 0.2) 23.1%
+	);
+}
+
+#custom-vegetable.percentage_24 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 24%,
+		rgba( 42,161,152, 0.2) 24.1%
+	);
+}
+
+#custom-vegetable.percentage_25 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 25%,
+		rgba( 42,161,152, 0.2) 25.1%
+	);
+}
+
+#custom-vegetable.percentage_26 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 26%,
+		rgba( 42,161,152, 0.2) 26.1%
+	);
+}
+
+#custom-vegetable.percentage_27 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 27%,
+		rgba( 42,161,152, 0.2) 27.1%
+	);
+}
+
+#custom-vegetable.percentage_28 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 28%,
+		rgba( 42,161,152, 0.2) 28.1%
+	);
+}
+
+#custom-vegetable.percentage_29 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 29%,
+		rgba( 42,161,152, 0.2) 29.1%
+	);
+}
+
+#custom-vegetable.percentage_30 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 30%,
+		rgba( 42,161,152, 0.2) 30.1%
+	);
+}
+
+#custom-vegetable.percentage_31 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 31%,
+		rgba( 42,161,152, 0.2) 31.1%
+	);
+}
+
+#custom-vegetable.percentage_32 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 32%,
+		rgba( 42,161,152, 0.2) 32.1%
+	);
+}
+
+#custom-vegetable.percentage_33 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 33%,
+		rgba( 42,161,152, 0.2) 33.1%
+	);
+}
+
+#custom-vegetable.percentage_34 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 34%,
+		rgba( 42,161,152, 0.2) 34.1%
+	);
+}
+
+#custom-vegetable.percentage_35 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 35%,
+		rgba( 42,161,152, 0.2) 35.1%
+	);
+}
+
+#custom-vegetable.percentage_36 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 36%,
+		rgba( 42,161,152, 0.2) 36.1%
+	);
+}
+
+#custom-vegetable.percentage_37 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 37%,
+		rgba( 42,161,152, 0.2) 37.1%
+	);
+}
+
+#custom-vegetable.percentage_38 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 38%,
+		rgba( 42,161,152, 0.2) 38.1%
+	);
+}
+
+#custom-vegetable.percentage_39 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 39%,
+		rgba( 42,161,152, 0.2) 39.1%
+	);
+}
+
+#custom-vegetable.percentage_40 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 40%,
+		rgba( 42,161,152, 0.2) 40.1%
+	);
+}
+
+#custom-vegetable.percentage_41 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 41%,
+		rgba( 42,161,152, 0.2) 41.1%
+	);
+}
+
+#custom-vegetable.percentage_42 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 42%,
+		rgba( 42,161,152, 0.2) 42.1%
+	);
+}
+
+#custom-vegetable.percentage_43 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 43%,
+		rgba( 42,161,152, 0.2) 43.1%
+	);
+}
+
+#custom-vegetable.percentage_44 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 44%,
+		rgba( 42,161,152, 0.2) 44.1%
+	);
+}
+
+#custom-vegetable.percentage_45 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 45%,
+		rgba( 42,161,152, 0.2) 45.1%
+	);
+}
+
+#custom-vegetable.percentage_46 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 46%,
+		rgba( 42,161,152, 0.2) 46.1%
+	);
+}
+
+#custom-vegetable.percentage_47 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 47%,
+		rgba( 42,161,152, 0.2) 47.1%
+	);
+}
+
+#custom-vegetable.percentage_48 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 48%,
+		rgba( 42,161,152, 0.2) 48.1%
+	);
+}
+
+#custom-vegetable.percentage_49 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 49%,
+		rgba( 42,161,152, 0.2) 49.1%
+	);
+}
+
+#custom-vegetable.percentage_50 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 50%,
+		rgba( 42,161,152, 0.2) 50.1%
+	);
+}
+
+#custom-vegetable.percentage_51 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 51%,
+		rgba( 42,161,152, 0.2) 51.1%
+	);
+}
+
+#custom-vegetable.percentage_52 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 52%,
+		rgba( 42,161,152, 0.2) 52.1%
+	);
+}
+
+#custom-vegetable.percentage_53 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 53%,
+		rgba( 42,161,152, 0.2) 53.1%
+	);
+}
+
+#custom-vegetable.percentage_54 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 54%,
+		rgba( 42,161,152, 0.2) 54.1%
+	);
+}
+
+#custom-vegetable.percentage_55 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 55%,
+		rgba( 42,161,152, 0.2) 55.1%
+	);
+}
+
+#custom-vegetable.percentage_56 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 56%,
+		rgba( 42,161,152, 0.2) 56.1%
+	);
+}
+
+#custom-vegetable.percentage_57 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 57%,
+		rgba( 42,161,152, 0.2) 57.1%
+	);
+}
+
+#custom-vegetable.percentage_58 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 58%,
+		rgba( 42,161,152, 0.2) 58.1%
+	);
+}
+
+#custom-vegetable.percentage_59 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 59%,
+		rgba( 42,161,152, 0.2) 59.1%
+	);
+}
+
+#custom-vegetable.percentage_60 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 60%,
+		rgba( 42,161,152, 0.2) 60.1%
+	);
+}
+
+#custom-vegetable.percentage_61 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 61%,
+		rgba( 42,161,152, 0.2) 61.1%
+	);
+}
+
+#custom-vegetable.percentage_62 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 62%,
+		rgba( 42,161,152, 0.2) 62.1%
+	);
+}
+
+#custom-vegetable.percentage_63 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 63%,
+		rgba( 42,161,152, 0.2) 63.1%
+	);
+}
+
+#custom-vegetable.percentage_64 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 64%,
+		rgba( 42,161,152, 0.2) 64.1%
+	);
+}
+
+#custom-vegetable.percentage_65 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 65%,
+		rgba( 42,161,152, 0.2) 65.1%
+	);
+}
+
+#custom-vegetable.percentage_66 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 66%,
+		rgba( 42,161,152, 0.2) 66.1%
+	);
+}
+
+#custom-vegetable.percentage_67 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 67%,
+		rgba( 42,161,152, 0.2) 67.1%
+	);
+}
+
+#custom-vegetable.percentage_68 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 68%,
+		rgba( 42,161,152, 0.2) 68.1%
+	);
+}
+
+#custom-vegetable.percentage_69 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 69%,
+		rgba( 42,161,152, 0.2) 69.1%
+	);
+}
+
+#custom-vegetable.percentage_70 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 70%,
+		rgba( 42,161,152, 0.2) 70.1%
+	);
+}
+
+#custom-vegetable.percentage_71 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 71%,
+		rgba( 42,161,152, 0.2) 71.1%
+	);
+}
+
+#custom-vegetable.percentage_72 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 72%,
+		rgba( 42,161,152, 0.2) 72.1%
+	);
+}
+
+#custom-vegetable.percentage_73 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 73%,
+		rgba( 42,161,152, 0.2) 73.1%
+	);
+}
+
+#custom-vegetable.percentage_74 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 74%,
+		rgba( 42,161,152, 0.2) 74.1%
+	);
+}
+
+#custom-vegetable.percentage_75 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 75%,
+		rgba( 42,161,152, 0.2) 75.1%
+	);
+}
+
+#custom-vegetable.percentage_76 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 76%,
+		rgba( 42,161,152, 0.2) 76.1%
+	);
+}
+
+#custom-vegetable.percentage_77 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 77%,
+		rgba( 42,161,152, 0.2) 77.1%
+	);
+}
+
+#custom-vegetable.percentage_78 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 78%,
+		rgba( 42,161,152, 0.2) 78.1%
+	);
+}
+
+#custom-vegetable.percentage_79 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 79%,
+		rgba( 42,161,152, 0.2) 79.1%
+	);
+}
+
+#custom-vegetable.percentage_80 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 80%,
+		rgba( 42,161,152, 0.2) 80.1%
+	);
+}
+
+#custom-vegetable.percentage_81 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 81%,
+		rgba( 42,161,152, 0.2) 81.1%
+	);
+}
+
+#custom-vegetable.percentage_82 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 82%,
+		rgba( 42,161,152, 0.2) 82.1%
+	);
+}
+
+#custom-vegetable.percentage_83 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 83%,
+		rgba( 42,161,152, 0.2) 83.1%
+	);
+}
+
+#custom-vegetable.percentage_84 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 84%,
+		rgba( 42,161,152, 0.2) 84.1%
+	);
+}
+
+#custom-vegetable.percentage_85 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 85%,
+		rgba( 42,161,152, 0.2) 85.1%
+	);
+}
+
+#custom-vegetable.percentage_86 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 86%,
+		rgba( 42,161,152, 0.2) 86.1%
+	);
+}
+
+#custom-vegetable.percentage_87 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 87%,
+		rgba( 42,161,152, 0.2) 87.1%
+	);
+}
+
+#custom-vegetable.percentage_88 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 88%,
+		rgba( 42,161,152, 0.2) 88.1%
+	);
+}
+
+#custom-vegetable.percentage_89 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 89%,
+		rgba( 42,161,152, 0.2) 89.1%
+	);
+}
+
+#custom-vegetable.percentage_90 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 90%,
+		rgba( 42,161,152, 0.2) 90.1%
+	);
+}
+
+#custom-vegetable.percentage_91 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 91%,
+		rgba( 42,161,152, 0.2) 91.1%
+	);
+}
+
+#custom-vegetable.percentage_92 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 92%,
+		rgba( 42,161,152, 0.2) 92.1%
+	);
+}
+
+#custom-vegetable.percentage_93 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 93%,
+		rgba( 42,161,152, 0.2) 93.1%
+	);
+}
+
+#custom-vegetable.percentage_94 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 94%,
+		rgba( 42,161,152, 0.2) 94.1%
+	);
+}
+
+#custom-vegetable.percentage_95 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 95%,
+		rgba( 42,161,152, 0.2) 95.1%
+	);
+}
+
+#custom-vegetable.percentage_96 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 96%,
+		rgba( 42,161,152, 0.2) 96.1%
+	);
+}
+
+#custom-vegetable.percentage_97 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 97%,
+		rgba( 42,161,152, 0.2) 97.1%
+	);
+}
+
+#custom-vegetable.percentage_98 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 98%,
+		rgba( 42,161,152, 0.2) 98.1%
+	);
+}
+
+#custom-vegetable.percentage_99 {
+	background-image: linear-gradient(
+		to right,
+		rgba( 42,161,152, 0.8) 99%,
+		rgba( 42,161,152, 0.2) 99.1%
+	);
+}
+

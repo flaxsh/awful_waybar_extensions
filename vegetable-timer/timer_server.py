@@ -112,7 +112,7 @@ class VegetableTimerServer:
         passed_str = f"{timer_secs // 60}min {timer_secs%60}s"
         total_str = f"{max_timer_secs // 60}min {max_timer_secs%60}s"
         return {"text": f"{title}{passed_str}/{total_str}".center(WIDTH),
-                "class": f"{min(int(timer_secs/max_timer_secs*100),99)}"}
+                "class": f"percentage_{min(int(timer_secs/max_timer_secs*100),99)}"}
 
     @staticmethod
     def _is_server_up() -> bool:

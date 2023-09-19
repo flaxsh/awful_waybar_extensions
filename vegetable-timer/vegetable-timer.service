@@ -6,7 +6,7 @@ NoNewPrivileges=yes
 RestrictNamespaces=yes
 User=theo
 Type=simple
-ExecStart=/usr/bin/python3 /home/theo/code/rumgehacke/awful_waybar_extensions/vegetable-timer/timer_server.py --request 5
+ExecStart=/usr/bin/python3 /path/to/timer_server.py --request 5
 
 [Install]
 WantedBy=multi-user.target
