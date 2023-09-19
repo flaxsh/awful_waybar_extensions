@@ -1,5 +1,5 @@
 import random
-from typing import Callable,Dict,Union
+from typing import Callable, Dict, Union
 import zmq
 from zmq import Socket
 from enum import Enum, auto
@@ -11,39 +11,42 @@ import json
 
 WIDTH = 35
 PORTNUM_COMM = 23512
-SOCKET_ADDRESS= f"ipc:///tmp/veggie_timer:{PORTNUM_COMM}"
+SOCKET_ADDRESS = f"ipc:///tmp/veggie_timer:{PORTNUM_COMM}"
 context = zmq.Context()
 
-class RequestMessages(str,Enum):
+
+class RequestMessages(str, Enum):
     PRESENCE_CHECK = 0
     SHUTDOWN = 1
     UPDATE = 2
     START_TIMER = 3
     CLEAR_TIMER = 4
+    START_SERVER = 5
 
 
-class ResponseMessages(str,Enum):
+class ResponseMessages(str, Enum):
     SUCCESS = auto()
     ERROR = auto()
 
-Handler = Callable[[RequestMessages],Union[ResponseMessages,str]]
+
+Handler = Callable[[RequestMessages], Union[ResponseMessages, str]]
 
 
 class VegetableTimerServer:
 
-    def __init__(self,default_timer_length=25*60,default_break_length=5*60) -> None:
-        self.socket : Socket = context.socket(zmq.REP)
+    def __init__(self, default_timer_length=25*60, default_break_length=300) -> None:
+        self.socket: Socket = context.socket(zmq.REP)
         self.shutdown_requested = False
         self.start_time = -1
         self.times_break = False
+        self.break_ended = None
 
         self.timer_length = default_timer_length
         self.break_length = default_break_length
 
-
-        self.handlers :Dict[RequestMessages,Handler]= {
-            RequestMessages.PRESENCE_CHECK : lambda : ResponseMessages.SUCCESS,
-            RequestMessages.SHUTDOWN : self.shutdown,
+        self.handlers: Dict[RequestMessages, Handler] = {
+            RequestMessages.PRESENCE_CHECK: lambda: ResponseMessages.SUCCESS,
+            RequestMessages.SHUTDOWN: self.shutdown,
             RequestMessages.UPDATE: self.tick,
             RequestMessages.START_TIMER: self.start_timer,
             RequestMessages.CLEAR_TIMER: self.reset_timer
@@ -65,30 +68,37 @@ class VegetableTimerServer:
         self.shutdown_requested = True
         return ResponseMessages.SUCCESS
 
-    def tick(self) -> str :
-        if self.start_time < 0: # no timer active
-            return '{"text" : "'+ 'Click to start timer'.center(WIDTH) +'"}'
-        current_duration = int(time.time()) - self.start_time
+    def tick(self) -> str:
+        if self.start_time < 0:  # no timer active
+            return '{"text" : "' + 'Click to start timer'.center(WIDTH) + '"}'
+        current_duration = self._get_current_duration()
         if current_duration > (self.timer_length + self.break_length):
-            resp = { "text" : "Break ended".center(WIDTH), "class" : "done"}
+            if self.break_ended is None:
+                self.break_ended = int(time.time())
+            resp = {
+                "text": f"Break ended {(int(time.time())-self.break_ended) // 60} minutes ago.".center(WIDTH), "class": "done"}
             return json.dumps(resp)
         elif current_duration > self.timer_length:
-            resp =  self._format_to_waybar(current_duration-self.timer_length,self.break_length,title="Break: ")
+            resp = self._format_to_waybar(
+                current_duration-self.timer_length, self.break_length, title="Break: ")
             resp["class"] = "alert"
             return json.dumps(resp)
         else:
-            return json.dumps(self._format_to_waybar(current_duration,self.timer_length))
+            return json.dumps(self._format_to_waybar(current_duration, self.timer_length))
 
-
+    def _get_current_duration(self) -> int:
+        return int(time.time()) - self.start_time
 
     def start_timer(self):
-        if self.start_time > 0: # already running
+        if self.start_time > 0 and self._get_current_duration() <= self.timer_length:
             return ResponseMessages.ERROR
+        self.break_ended = None
         self.start_time = int(time.time())
         return ResponseMessages.SUCCESS
 
     def reset_timer(self):
         self.start_time = -1
+        self.break_ended = None
         return ResponseMessages.SUCCESS
 
     @staticmethod
@@ -98,12 +108,12 @@ class VegetableTimerServer:
         server.socket.close()
 
     @staticmethod
-    def _format_to_waybar(timer_secs:int,max_timer_secs:int,title:str="") -> dict[str, str]:
+    def _format_to_waybar(timer_secs: int, max_timer_secs: int, title: str = "") -> dict[str, str]:
         passed_str = f"{timer_secs // 60}min {timer_secs%60}s"
         total_str = f"{max_timer_secs // 60}min {max_timer_secs%60}s"
-        return {"text" : f"{title}{passed_str}/{total_str}".center(WIDTH),
-                "class":f"{min(int(timer_secs/max_timer_secs*100),99)}"}
-    
+        return {"text": f"{title}{passed_str}/{total_str}".center(WIDTH),
+                "class": f"{min(int(timer_secs/max_timer_secs*100),99)}"}
+
     @staticmethod
     def _is_server_up() -> bool:
         with context.socket(zmq.REQ) as socket:
@@ -111,32 +121,42 @@ class VegetableTimerServer:
             socket.send_string(RequestMessages.PRESENCE_CHECK)
             poller = zmq.Poller()
             poller.register(socket, zmq.POLLIN)
-            wait_noise = int(random.random() * 2000) # fighting race cons one shitty non-deterministic hack at a time
+            # fighting race cons one shitty non-deterministic hack at a time
+            wait_noise = int(random.random() * 2000)
             poll_result = poller.poll(500+wait_noise)
-            is_up = len(poll_result) > 0 # if we heard something then the server is up
+            # if we heard something then the server is up
+            is_up = len(poll_result) > 0
             if is_up:
                 _ = socket.recv_string()
             return is_up
 
     @staticmethod
-    def bring_up_if_down(max_retries = 3):
-            pass
+    def bring_up_if_down(max_retries=3):
+        pass
 
-if __name__ =="__main__":
+
+if __name__ == "__main__":
     parser = ArgumentParser()
-    parser.add_argument("--request",choices=[m.value for m in RequestMessages],help="Choose appropriate number:" +','.join([f"{m.name}: {m.value}" for m in RequestMessages]),required=True)
+    parser.add_argument("--request", choices=[m.value for m in RequestMessages], help="Choose appropriate number:" + ','.join(
+        [f"{m.name}: {m.value}" for m in RequestMessages]), required=True)
     args = parser.parse_args()
     server_thread = None
     # check if we're the first ones and need to start the whole damn thing!
-    if not VegetableTimerServer._is_server_up():
-        server_thread = Thread(None, VegetableTimerServer.start_new_server, args=[])
-        print("[INFO] Starting new server...")
-        server_thread.run()
+    is_up = VegetableTimerServer._is_server_up()
+    if not is_up:
+        if args.request == RequestMessages.START_SERVER:
+            server_thread = Thread(
+                None, VegetableTimerServer.start_new_server, args=[])
+            print("[INFO] Starting new server...")
+            server_thread.run()
+        else:
+            print('{ "text" : "Timer Server not started!"}')
 
-    with context.socket(zmq.REQ) as socket:
-        socket.connect(SOCKET_ADDRESS)
-        socket.send_string(args.request)
-        print(socket.recv_string())
+    else:
+        with context.socket(zmq.REQ) as socket:
+            socket.connect(SOCKET_ADDRESS)
+            socket.send_string(args.request)
+            print(socket.recv_string())
 
     if server_thread is not None and server_thread.is_alive():
         server_thread.join()
