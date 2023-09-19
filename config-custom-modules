@@ -1,3 +1,4 @@
+// this points to the location on my device, please change it according to your needs and add any secrets necessary
 {
     "custom/vegetable": {
                  "exec": "python3 /home/theo/code/rumgehacke/awful_waybar_extensions/vegetable-timer/timer_server.py --request 2",
